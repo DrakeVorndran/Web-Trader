@@ -1,6 +1,10 @@
 module.exports = (app) => {
     const Background = require('../models/background')
     const Text = require('../models/text')
+    
+    app.get("/sign-up", (req, res) => {
+        res.render("sign-up");
+    });
 
 
     app.get('/item-create', (req, res) => {

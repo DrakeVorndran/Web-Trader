@@ -1,15 +1,20 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const bodyParser = require("body-parser");
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 3000;
+
 
 
 app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
 app.set('view engine', '.hbs');
 
+app.use(cookieParser()); 
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -22,7 +27,8 @@ app.get('/', (req, res) => {
 })
 
 
-const items = require('./controllers/items')(app);
+require('./controllers/items')(app);
+require('./controllers/auth')(app);
 
 
 
