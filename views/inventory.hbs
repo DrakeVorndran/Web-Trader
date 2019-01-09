@@ -1,0 +1,29 @@
+<h1>Backgrounds</h1>
+<ul>
+    {{#each background}}
+    <li>
+        <div>
+            <h3>{{this.name}}</h3>
+            <h3>{{this.value}}</h3>
+            <a href="/background/{{this._id}}/delete">delete</a>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+
+
+<h1>Text Color</h1>
+<ul>
+    {{#each text}}
+    <li>
+        <div>
+            <h3>{{this.name}}</h3>
+            <h3>{{this.value}}</h3>
+            <a href="/text/{{this._id}}/delete">delete</a>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+
+
+<a href="/item-create">make new items</a>

@@ -1,0 +1,42 @@
+/*-----Site Styling-----*/
+
+/*-----Item styling-----*/
+.blue-background{
+    background: blue;
+}
+
+.red-background{
+    background: red;
+}
+
+.green-background{
+    background: green;
+}
+
+.white-background{
+    background: white;
+}
+
+.black-background{
+    background: black;
+}
+
+.blue-font{
+    color: blue;
+}
+
+.red-font{
+    color: red;
+}
+
+.green-font{
+    color: green;
+}
+
+.white-font{
+    color: white;
+}
+
+.black-font{
+    color: black;
+}
