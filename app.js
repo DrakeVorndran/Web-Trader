@@ -22,8 +22,26 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes
 
 app.use(express.static(__dirname + '/public'));
 
+var checkAuth = (req, res, next) => {
+  console.log("Checking authentication");
+  if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+    req.user = null;
+  } else {
+    var token = req.cookies.nToken;
+    var decodedToken = jwt.decode(token, { complete: true }) || {};
+    req.user = decodedToken.payload;
+  }
+
+  next();
+};
+app.use(checkAuth);
+
+
 app.get('/', (req, res) => {
-  res.render('home');
+     var currentUser = req.user;
+//    console.log(req.user)
+//    console.log(res.cookie())
+  res.render('home',{user:currentUser});
 })
 
 

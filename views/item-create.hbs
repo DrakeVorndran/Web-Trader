@@ -2,12 +2,14 @@
     
     <input type="text" name="name" placeholder="name">
     <input type="text" name="value" placeholder="value">
+    <input type="hidden" name="owner" value="{{user._id}}">
     <button class="btn btn-primary" type="submit">Save Background</button>
 
 </form>
 
 <form method="POST" action="/text">
     <input type="text" name="name" placeholder="name">
+    <input type="hidden" name="owner" value="{{user._id}}">
     <input type="text" name="value" placeholder="value">
     <button class="btn btn-primary" type="submit">Save Text Color</button>
 

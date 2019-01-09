@@ -1,27 +1,32 @@
 module.exports = (app) => {
     const Background = require('../models/background')
     const Text = require('../models/text')
-    
-    app.get("/sign-up", (req, res) => {
-        res.render("sign-up");
-    });
+
+
 
 
     app.get('/item-create', (req, res) => {
-        res.render('item-create');
+        const currentUser = req.user;
+        res.render('item-create', {user: currentUser});
     })
 
     app.get('/inventory', (req, res) => {
-        Background.find({}).then((background) => {
-            Text.find({}).then((text) => {
-                res.render('inventory',{text: text, background: background});
+        var currentUser = req.user;
+        if(currentUser){
+            Background.find({owner: currentUser._id}).then((background) => {
+                Text.find({owner: currentUser._id}).then((text) => {
+                    res.render('inventory',{text: text, background: background});
 
+                }).catch((err) => {
+                    console.log(err)
+                })
             }).catch((err) => {
-                console.log(err)
+                console.log(err);
             })
-        }).catch((err) => {
-            console.log(err);
-        })
+        }
+        else{
+            res.redirect('/login')
+        }
     })
 
     app.get('/text/:id/delete', (req, res) => {
@@ -33,7 +38,7 @@ module.exports = (app) => {
             console.log(err);
         })
     })
-    
+
     app.get('/background/:id/delete', (req, res) => {
         Background.findById(req.params.id).then((background) => {
             console.log(background)
@@ -61,7 +66,7 @@ module.exports = (app) => {
             console.log(err);
         })
     })
-    
+
     app.delete('/text/:id', (req, res) => {
         Text.findByIdAndDelete(req.params.id).then((text) => {
             console.log(text);
@@ -70,7 +75,7 @@ module.exports = (app) => {
             console.log(err);
         })
     })
-    
+
     app.delete('/background/:id', (req, res) => {
         Background.findByIdAndDelete(req.params.id).then((background) => {
             console.log(background);
