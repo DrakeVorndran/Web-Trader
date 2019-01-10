@@ -1,6 +1,7 @@
+const Background = require('../models/background')
+const Text = require('../models/text')
 module.exports = (app) => {
-    const Background = require('../models/background')
-    const Text = require('../models/text')
+
 
 
 
@@ -15,7 +16,13 @@ module.exports = (app) => {
         if(currentUser){
             Background.find({owner: currentUser._id}).then((background) => {
                 Text.find({owner: currentUser._id}).then((text) => {
-                    res.render('inventory',{text: text, background: background});
+                    if(currentUser._id == '5c37800631c58920057eafa0'){
+                        res.render('inventory',{text: text, background: background, admin: true});
+                    }
+                    else{
+                        res.render('inventory',{text: text, background: background, admin: false});
+
+                    }
 
                 }).catch((err) => {
                     console.log(err)

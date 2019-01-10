@@ -46,6 +46,7 @@ app.get('/', (req, res) => {
 
 
 require('./controllers/items')(app);
+require('./controllers/catalog')(app);
 require('./controllers/auth')(app);
 
 
