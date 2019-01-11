@@ -1,13 +1,13 @@
-{{#each backgrounds}}
-<div>
-    <p>{{this.name}}</p>
+<div class="item-container">
+    {{#each backgrounds}}
+    {{>item}}
+    {{/each}}
 </div>
-{{/each}}
 <a href='/crate/backgrounds'>open background crate</a>
 
-{{#each texts}}
-<div>
-    <p>{{this.name}}</p>
+<div class="item-container">
+    {{#each texts}}
+    {{>item}}
+    {{/each}}
 </div>
-{{/each}}
 <a href='/crate/text_colors'>open text crate</a>

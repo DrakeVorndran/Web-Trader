@@ -1,0 +1,15 @@
+<div class="navbar">
+    <a href="/">home</a>
+    <a href="/inventory">inventory</a>
+    <a href="/catalog">Open Crates</a>
+    <span class="user-info">
+        
+        {{#if user}}
+        
+        <a href="/logout">logout</a>
+        {{else}}
+        <a href="/login">login</a>
+        <a href="/sign-up">sign up</a>
+        {{/if}}
+    </span>
+</div>

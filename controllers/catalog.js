@@ -5,7 +5,8 @@ const Text = require('../models/text')
 const models = {backgrounds: Background, text_colors: Text};
 module.exports = (app) => {
     app.get('/catalog', (req, res) => {
-        res.render('catalog', {backgrounds: backgrounds, texts: texts})
+        const currentUser = req.user;
+        res.render('catalog', {backgrounds: backgrounds, texts: texts, user: currentUser})
     })
 
     app.get('/crate/:crate', (req, res) => {
@@ -14,7 +15,7 @@ module.exports = (app) => {
             const items = require(`../items/${req.params.crate}`)
             const item = items[Math.floor(Math.random()*items.length)]
             models[req.params.crate].create({name: item.name, value: item.value, owner: currentUser._id}).then((newItem) => {
-                res.render('crate', {item: newItem})
+                res.render('crate', {item: newItem, user: currentUser})
             }).catch((err) => {
                 console.log(err)
             })

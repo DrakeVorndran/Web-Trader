@@ -23,7 +23,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes
 app.use(express.static(__dirname + '/public'));
 
 var checkAuth = (req, res, next) => {
-  console.log("Checking authentication");
   if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
     req.user = null;
   } else {
